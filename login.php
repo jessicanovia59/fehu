@@ -3,6 +3,14 @@
     include_once "./secure/prevention.php";
     # menhubungkan koneksi dengan database
     include_once "./db/conn.php";
+    global $conn;
+
+    $username;
+    $password;
+
+    if(isset($_SESSION['username'])) {
+        header('Location: index.php');
+    }
 ?>
 
 <!DOCTYPE html>
@@ -13,29 +21,9 @@
 
         <title>Fehu | Login Page</title>
         <link rel="stylesheet" type="text/css" href="./css/navbar.css">
-`</head>
-    <body>
-        <nav class="navbar">
-            <div class="container">
-                <button type="button" class="navbar-toogle" data-toggle="collapse" data-target="#mynavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a href="index.php" class="brand"><img src="./img/logo.png" alt="./img/logo.png"></a>
-            </div>
-            <div class="collapse nav-col" id="mynavbar">
-                <ul class="nav navbar-nav">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                <? if(!isset($_SESSION["username"])){ ?>
-                    <li><a href="login.php"><span class="log-in"></span>Login</a></li>
-                <? } else { ?>
-                    <li><a href="logout.php"><span class="log-out"></span>Logout</a></li>
-                <? } ?>
-                </ul>
-            </div>
-        </nav>
+        <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     </head>
     <body>
         <section class="Login">
