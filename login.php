@@ -2,7 +2,7 @@
     # menjaga agar tidak terjadi session hijack
     include_once "prevention.php";
     # menhubungkan koneksi dengan database
-    include_once "conn.php";
+    include_once "./db/conn.php";
 ?>
 
 <!DOCTYPE html>
