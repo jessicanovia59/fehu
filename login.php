@@ -26,6 +26,19 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     </head>
     <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="collapse navbar-collapse d-flex justify-content-beetween" id="nav-bar">
+                <ul class="nav navbar-nav">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <? if(!isset($_SESSION["username"])){ ?>
+                    <li><a href="login.php"><span class="log-in"></span>Login</a></li>
+                    <? } else { ?>
+                    <li><a href="logout.php"><span class="log-out"></span>Logout</a></li>
+                    <? } ?>
+                </ul>
+            </div>
+        </nav>
         <section class="Login">
             <div class=container>
                 <form class="login-form" method="POST" action="">>
