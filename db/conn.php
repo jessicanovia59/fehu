@@ -1,7 +1,7 @@
 <?php
     $host = 'localhost';
-    $username = 'root';
-    $password = '';
+    $user = 'root';
+    $pass = '';
     $database = 'gogame';
-    $conn = mysqli_connect($host, $username, $password, $database);
+    $conn = mysqli_connect($host, $user, $pass, $database);
 ?>
