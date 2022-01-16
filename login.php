@@ -12,8 +12,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1 ">
 
         <title>Fehu | Login Page</title>
-        <link rel="stylesheet" type="text/css" href="navbar.css">
-        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" type="text/css" href="./css/navbar.css">
 `</head>
     <body>
         <nav class="navbar">
