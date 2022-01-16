@@ -1,6 +1,6 @@
 <?php
     # menjaga agar tidak terjadi session hijack
-    include_once "prevention.php";
+    include_once "./secure/prevention.php";
     # menhubungkan koneksi dengan database
     include_once "./db/conn.php";
 ?>
