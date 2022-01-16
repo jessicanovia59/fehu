@@ -20,31 +20,52 @@
         <meta name="viewport" content="width=device-width, initial-scale=1 ">
 
         <title>Fehu | Login Page</title>
-        <link rel="stylesheet" type="text/css" href="./css/navbar.css">
+        <link rel="stylesheet" type="text/css" href="./css/style.css">
         <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="collapse navbar-collapse d-flex justify-content-beetween" id="nav-bar">
-                <ul class="nav navbar-nav">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <? if(!isset($_SESSION["username"])){ ?>
-                    <li><a href="login.php"><span class="log-in"></span>Login</a></li>
-                    <? } else { ?>
-                    <li><a href="logout.php"><span class="log-out"></span>Logout</a></li>
-                    <? } ?>
-                </ul>
-            </div>
-        </nav>
-        <section class="Login">
-            <div class=container>
-                <form class="login-form" method="POST" action="">>
-                    <input type="text" name="username" id="inputUsername" class="form-control" placeholder="Username">
-                    <input type="password" name="uassword" id="inputUsername" class="form-control" placeholder="Password">
-                    <button class="btn" type="submit">Login</button>
+        <?php
+            function validate(){
+                global $username, $password;
+                if($username===''){
+                    $_SESSION['error'] = 'Username must be filled!';
+                    return false;
+                }
+                if($password===''){
+                    $_SESSION['error']='Password must be filled!';
+                    return false;
+                }
+                return true;
+            }
+            if(count($_POST)>0) {
+                $username = $_POST['username'];
+                $password = $_POST['password'];
+                $rows = array();
+                if(validate()) {
+                    $res = $conn->query("SELECT * FROM user WHERE username LIKE '$username'");
+                    while($row = mysqli_fetch_assoc($res)){
+                        if(password_verify($password,$row['password'])){
+                            $_SESSION['username'] = $row['username'];
+                            break;
+                        }
+                        if(isset($_SESSION['username'])){
+                            header('Location: index.php');
+                        } else $_SESSION['error'] = 'Invalid credential';
+                    }
+                }
+            }
+        ?>
+        <section class="container">
+            <div class="card clogin">
+                <div class="log-head">Login</div>
+                <form class="login-form" method="POST" action="">
+                    <input type="text" name="username" id="username" class="form-control" placeholder="Username">
+                    <input type="password" name="password" id="password" class="form-control" placeholder="Password">
+                    <div class="btn">
+                        <button type="submit">Login</button>
+                    </div>
                 </form>
             </div>
         </section>
